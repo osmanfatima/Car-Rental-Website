@@ -1,0 +1,632 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fatima's Motors - Car Rental</title>
+
+<style>
+
+/* ===== BASIC RESET ===== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Georgia, "Trebuchet MS", sans-serif;
+    background-color: #fdf6ec;
+    color: #2b2b2b;
+    line-height: 1.6;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* ===== HEADER / NAVIGATION ===== */
+header {
+    background-color: #1f3b4d;
+    padding: 18px 8%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.logo {
+    color: #ffb347;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.logo span {
+    color: white;
+}
+
+nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 25px;
+}
+
+nav a {
+    color: white;
+    font-size: 16px;
+}
+
+nav a:hover {
+    color: #ffb347;
+}
+
+/* ===== HERO SECTION ===== */
+.hero {
+    background-image:
+        linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)),
+        url("images/Car Showroom.jpg");
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    color: white;
+    text-align: center;
+    padding: 160px 8%;
+}
+
+.hero h1 {
+    font-size: 45px;
+    text-shadow: 0 3px 10px rgba(0,0,0,0.7);
+    margin-bottom: 15px;
+}
+
+.hero p {
+    text-shadow: 0 2px 6px rgba(0,0,0,0.7);
+    margin-bottom: 0;
+}
+
+/* ===== BUTTONS ===== */
+.btn {
+    display: block;
+    background-color: #ffb347;
+    color: #1f3b4d;
+    width: fit-content;
+    margin: 20px auto 0;
+    padding: 12px 30px;
+    border-radius: 30px;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    font-family: inherit;
+}
+
+.btn:hover {
+    background-color: #ff9a1f;
+}
+
+/* ===== GENERAL SECTIONS ===== */
+section {
+    padding: 70px 8%;
+}
+
+.title {
+    text-align: center;
+    font-size: 34px;
+    color: #1f3b4d;
+    margin-bottom: 10px;
+}
+
+.subtitle {
+    text-align: center;
+    color: #777;
+    margin-bottom: 40px;
+}
+
+/* ===== CAR CARDS ===== */
+.cars {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 25px;
+}
+
+.car {
+    background-color: white;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+    transition: transform 0.3s;
+}
+
+.car:hover {
+    transform: translateY(-8px);
+}
+
+/* All car images have equal dimensions */
+.car-img {
+    width: 100%;
+    height: 200px;
+    display: block;
+    object-fit: cover;
+}
+
+.car-info {
+    padding: 20px;
+}
+
+.car-info h3 {
+    color: #1f3b4d;
+}
+
+.car-info p {
+    color: #777;
+    font-size: 14px;
+}
+
+.price {
+    color: #2e6f73;
+    font-size: 22px;
+    font-weight: bold;
+    margin: 10px 0;
+}
+
+.price small {
+    font-size: 14px;
+    color: #999;
+}
+
+/* ===== HOW IT WORKS ===== */
+.steps-bg {
+    background-color: #2e6f73;
+}
+
+.steps-bg .title {
+    color: white;
+}
+
+.steps-bg .subtitle {
+    color: #d9ecec;
+}
+
+.steps {
+    display: flex;
+    gap: 25px;
+    flex-wrap: wrap;
+}
+
+.step {
+    flex: 1;
+    min-width: 200px;
+    background-color: rgba(255,255,255,0.1);
+    color: white;
+    padding: 30px;
+    border-radius: 15px;
+    text-align: center;
+}
+.booking button {
+    grid-column: 1 / -1;
+    width: 150px;
+    justify-self: center;
+}
+
+.num {
+    width: 50px;
+    height: 50px;
+    background-color: #ffb347;
+    color: #1f3b4d;
+    border-radius: 50%;
+    font-size: 22px;
+    font-weight: bold;
+    line-height: 50px;
+    margin: 0 auto 15px;
+}
+
+/* ===== BOOKING FORM ===== */
+.booking {
+    background-color: white;
+    width: 100%;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    align-items: end;
+}
+
+.field {
+    width: 100%;
+}
+
+.field label {
+    display: block;
+    font-size: 14px;
+    color: #2e6f73;
+    margin-bottom: 7px;
+    font-weight: bold;
+}
+
+.field input,
+.field select {
+    width: 100%;
+    height: 45px;
+    padding: 10px;
+    border: 2px solid #e5d9c5;
+    border-radius: 8px;
+    font-size: 15px;
+    font-family: inherit;
+}
+
+.booking .btn {
+    width: 100%;
+    height: 45px;
+}
+
+/* ===== CONTACT FORM ===== */
+.contact-box {
+    max-width: 550px;
+    width: 100%;
+    margin: auto;
+    background-color: white;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+}
+
+.contact-box input,
+.contact-box textarea {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+    border: 2px solid #e5d9c5;
+    border-radius: 8px;
+    font-size: 15px;
+    font-family: inherit;
+}
+
+.contact-box textarea {
+    resize: vertical;
+    display: block;
+}
+
+.contact-box button {
+    width: 100%;
+}
+
+/* ===== FOOTER ===== */
+footer {
+    background-color: #1f3b4d;
+    color: #d9ecec;
+    text-align: center;
+    padding: 25px;
+}
+
+footer span {
+    color: #ffb347;
+}
+
+/* ===== TABLET RESPONSIVENESS ===== */
+@media (max-width: 900px) {
+
+    .booking {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+}
+
+/* ===== MOBILE RESPONSIVENESS ===== */
+@media (max-width: 600px) {
+
+    header {
+        justify-content: center;
+        text-align: center;
+    }
+
+    nav {
+        justify-content: center;
+        gap: 15px;
+    }
+
+    nav a {
+        font-size: 14px;
+    }
+
+    .hero {
+        padding: 100px 5%;
+    }
+
+    .hero h1 {
+        font-size: 32px;
+    }
+
+    .booking {
+        grid-template-columns: 1fr;
+        padding: 20px;
+    }
+
+    section {
+        padding: 50px 5%;
+    }
+
+    .title {
+        font-size: 28px;
+    }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- ===== HEADER ===== -->
+<header>
+
+    <div class="logo">Fatima's<span>Motors</span></div>
+
+    <nav>
+        <a href="#home">Home</a>
+        <a href="#cars">Cars</a>
+        <a href="#how">How it Works</a>
+        <a href="#book">Book</a>
+        <a href="#contact">Contact</a>
+    </nav>
+
+</header>
+
+<!-- ===== HERO SECTION ===== -->
+<div class="hero" id="home">
+
+    <h1>Rent Your <span>Dream Car</span> Today</h1>
+
+    <h2>Your Plans. Your Pace. Your Perfect ride.</h2>
+   
+   </p>The right car makes all the difference. Find yours and let the journey begin.
+
+
+    <a href="#cars" class="btn">Browse Cars</a>
+
+</div>
+
+<!-- ===== CARS SECTION ===== -->
+<section id="cars">
+
+    <h2 class="title">Our Cars</h2>
+
+    <p class="subtitle">Choose the perfect ride for your trip</p>
+
+    <div class="cars">
+
+        <!-- CAR 1 -->
+        <div class="car">
+
+            <img src="images/Toyota Corolla.jpg"
+                 alt="Toyota Corolla"
+                 class="car-img">
+
+            <div class="car-info">
+
+                <h3>Toyota Corolla</h3>
+
+                <p>5 Seats · Automatic · Petrol</p>
+
+                <div class="price">
+                    Ksh 8,000<small>/day</small>
+                </div>
+
+                <a href="#book" class="btn">Rent Now</a>
+
+            </div>
+        </div>
+
+        <!-- CAR 2 -->
+        <div class="car">
+
+            <img src="/images/Jeep Wrangler.jpg"
+                 alt="Jeep Wrangler"
+                 class="car-img">
+
+            <div class="car-info">
+
+                <h3>Jeep Wrangler</h3>
+
+                <p>SUV · 5 Seats · Automatic · Petrol </p>
+
+                <div class="price">
+                    Ksh 50,000<small>/day</small>
+                </div>
+
+                <a href="#book" class="btn">Rent Now</a>
+
+            </div>
+        </div>
+
+        <!-- CAR 3 -->
+        <div class="car">
+
+            <img src="/images/Range Rover.jpg"
+                 alt="Range Rover Vogue"
+                 class="car-img">
+
+            <div class="car-info">
+
+                <h3>Range Rover Vogue</h3>
+
+                <p>Suv · 5 Seats · Automatic · Petrol</p>
+
+                <div class="price">
+                    Ksh 60,000<small>/day</small>
+                </div>
+
+                <a href="#book" class="btn">Rent Now</a>
+
+            </div>
+        </div>
+
+        <!-- CAR 4 -->
+        <div class="car">
+
+            <img src="/images/Mercedes-Benz.jpg"
+                 alt="Mercedes-Benz"
+                 class="car-img">
+
+            <div class="car-info">
+
+                <h3>Mercedes-Benz</h3>
+
+                <p>Sedan · 5 Seats · Automatic · Petrol</p>
+
+                <div class="price">
+                    Ksh 30,000<small>/day</small>
+                </div>
+
+                <a href="#book" class="btn">Rent Now</a>
+
+            </div>
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ===== HOW IT WORKS ===== -->
+<section class="steps-bg" id="how">
+
+    <h2 class="title">How It Works</h2>
+
+    <p class="subtitle">Pick It. Book It. Drive It.</p>
+
+    <div class="steps">
+
+        <div class="step">
+
+            <div class="num">1</div>
+
+            <h3>Choose a Car</h3>
+
+            <p>Pick the car that fits your needs and budget.</p>
+
+        </div>
+
+        <div class="step">
+
+            <div class="num">2</div>
+
+            <h3>Book Online</h3>
+
+            <p>Select your dates and confirm your booking.</p>
+
+        </div>
+
+        <div class="step">
+
+            <div class="num">3</div>
+
+            <h3>Drive Away</h3>
+
+            <p>Pick up your keys and enjoy the road!</p>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ===== BOOKING FORM ===== -->
+<section id="book">
+
+    <h2 class="title">Book Your Car</h2>
+
+    <p class="subtitle">Pick your place and dates</p>
+
+    <form class="booking">
+
+
+        <div class="field">
+
+            <label for="pickup">Pick-up Date</label>
+
+            <input type="date"
+                   id="pickup"
+                   required>
+
+        </div>
+
+        <div class="field">
+
+            <label for="return">Return Date</label>
+
+            <input type="date"
+                   id="return"
+                   required>
+
+        </div>
+
+        <div class="field">
+
+            <label for="carType">Select Car Type</label>
+
+            <select id="carType" name="carTyoe" required>
+                <option value="">Selrct a vehicle</option>
+                <option value="Toyota Corolla">Toyota Corolla - Economy</option>
+                <option value="Jeep Wrangler">Jeep Wrangler - Adventure SUV</option>
+                <option value="Range Rover">Range Rover - Premium SUV</option>
+                <option value="Mercedes-Benz">Mercedes-Benz - Executive Luxury</option>
+            </select>
+
+            
+
+        </div>
+
+        <button type="submit" class="btn">Search</button>
+
+    </form>
+
+</section>
+
+<!-- ===== CONTACT SECTION ===== -->
+<section id="contact">
+
+    <h2 class="title">Contact Us</h2>
+
+    <p class="subtitle">Have a question? Send us a message</p>
+
+    <form class="contact-box">
+
+        <input type="text"
+               placeholder="Your Name"
+               aria-label="Your Name"
+               required>
+
+        <input type="email"
+               placeholder="Your Email"
+               aria-label="Your Email"
+               required>
+
+        <textarea rows="4"
+                  placeholder="Your Message"
+                  aria-label="Your Message"
+                  required></textarea>
+
+        <button type="submit" class="btn">Send Message</button>
+
+    </form>
+
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+
+    <p>&copy; 2026 <span>Fatima's Motors</span> Car Rental. All rights reserved.</p>
+
+</footer>
+
+</body>
+</html>
